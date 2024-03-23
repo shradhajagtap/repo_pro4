@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>Company</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+{% endblock %}
+
+{% block content %}
+        <table class="table table-dark table-haver w-50 m-auto mt-5">
+                <thead>
+                    <tr>
+                        <th>Company ID</th>
+                        <th>Company Name</th>
+                        <th>Company Owner</th>
+                        <th>Company State</th>
+                        <th>Company Total Emp</th>
+                        <th>Company Pincode</th>
+                        <th colspan="2" class="text-center"> Action </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for company in orders %}
+                        <tr>
+                            <td>{{ company.id }}</td>
+                            <td>{{ company.company_name }}</td>
+                            <td>{{ company.company_owner }}</td>
+                            <td>{{ company.company_state}}</td>
+                            <td>{{ company.company_total_emp }}</td>
+                            <td>{{ company.city_pincode }}</td>
+
+                            <td>
+                                <a href="{% url 'update_url' company.id %}">
+                                        <button class="btn btn-light col-12"><i class="bi bi-vector-pen"></i> &nbsp Update </button>
+                                </a>
+                            </td>
+                            <td>
+                                    <a href="{% url 'cancel_url' company.id %}">
+                                        <button class="btn btn-danger col-12"><i class="bi bi-trash"></i> &nbsp Delete </button>
+                                    </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+        </table>
+{% endblock%}
